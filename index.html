@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filip Kedvencei</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="kepek/icon.png">
+</head>
+<body>
+<header id="header">
+    <div class="header-container">
+        <a href="index.html"><h1>Filip Kedvencei</h1></a>
+        <nav>
+            <a href="index.html">Főoldal</a>
+            <a href="#movie">Filmek</a>
+            <a href="#about">Rólunk</a>
+            <a href="#infos">Elérhetőségünk</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <h1>Üdvözlünk Filip Kedvenc Filmjei között</h1>
+        <h2>Válassz ki egy filmet!👇</h2>
+
+    <div class="movie-grid" id="movie">
+
+        <div class="movie-block" onclick="goToMovie('pacificrim')">
+            <img src="kepek/pacificrim.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Akció • 2013</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Pacific Rim</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('predator')">
+            <img src="kepek/predator.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Horror • 1987</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Predator</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('predator2')">
+            <img src="kepek/predator2.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Horror • 1990</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Predator 2</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('prey')">
+            <img src="kepek/prey.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Horror • 2022</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Prey</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('predatorkok')">
+            <img src="kepek/predatorkok.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Horror • 2025</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Predator: Killer Of Killers</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('predatorbadlands')">
+            <img src="kepek/predatorbadlands.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Horror • 2025</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Predator: Badlands</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('spiderverse')">
+            <img src="kepek/spiderverse.webp">
+            <div class="movie-info">
+                <p>Gyerek/Akció • 2018</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Spider-Man: Into the Spider-Verse</h3>
+        </div> 
+
+        <div class="movie-block" onclick="goToMovie('spiderverse2')">
+            <img src="kepek/spiderverse2.webp">
+            <div class="movie-info">
+                <p>Gyerek/Akció • 2023</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Spider-Man: Across the Spider-Verse</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('tasm')">
+            <img src="kepek/tasm.webp">
+            <div class="movie-info">
+                <p>Akció/Sci-fi • 2012</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>The Amazing Spider-Man</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('tasm2')">
+            <img src="kepek/tasm2.webp">
+            <div class="movie-info">
+                <p>Akció/Sci-fi • 2014</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>The Amazing Spider-Man 2</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('thunderbolts')">
+            <img src="kepek/thunderbolts.webp">
+            <div class="movie-info">
+                <p>Akció/Sci-fi • 2025</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Thunderbolts</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('batman1989')">
+            <img src="kepek/batman1989.webp">
+            <div class="movie-info">
+                <p>Akció/Kaland • 1989</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Batman</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('thebatman')">
+            <img src="kepek/thebatman.webp">
+            <div class="movie-info">
+                <p>Akció/Krimi • 2022</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>The Batman</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('scream')">
+            <img src="kepek/scream.webp">
+            <div class="movie-info">
+                <p>Horror • 1996</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Scream</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('scarymovie')">
+            <img src="kepek/scarymovie.webp">
+            <div class="movie-info">
+                <p>Horror/Vígjáték • 2000</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Scary Movie</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('shawshankredemenption')">
+            <img src="kepek/shawshankredemenption.webp">
+            <div class="movie-info">
+                <p>Krimi/Filmdráma • 1994</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3> Shawshank Redemption</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('tfone')">
+            <img src="kepek/tfone.webp">
+            <div class="movie-info">
+                <p>Akció/Sci-fi • 2024</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Transformers: One</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('bladerunner2049')">
+            <img src="kepek/bladerunner2049.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Akció • 2017</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Blade Runner 2049</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('realsteel')">
+            <img src="kepek/realsteel.webp">
+            <div class="movie-info">
+                <p>Sci-fi/Akció • 2011</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Real Steel</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('ninjago')">
+            <img src="kepek/ninjago.webp">
+            <div class="movie-info">
+                <p>Gyerek/Vígjáték • 2017</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>Lego Ninjago</h3>
+        </div>
+
+        <div class="movie-block" onclick="goToMovie('the_nightmare_before_xmas')">
+            <img src="kepek/the_nightmare_before_xmas.webp">
+            <div class="movie-info">
+                <p>Gyerek/Fantasy • 1993</p>
+                <button>▶ Lejátszás</button>
+            </div>
+            <h3>The Nightmare Before Christmas</h3>
+        </div>
+        
+
+    </div>
+    <footer>
+        <p>&copy; 2026 ZS Kategóriás filmmúzeum</p>
+    </footer>
+</main>
+
+<script>
+    function goToMovie(id){
+        window.location.href = "filmek.html?film=" + id;
+    }
+    
+    const kepek = [
+      "kepek/header1.webp",
+      "kepek/header2.webp",
+      "kepek/header3.webp",
+      "kepek/header4.webp",
+      "kepek/header5.webp"
+    ];
+    
+    // előző kép index lekérése
+    let elozo = localStorage.getItem("elozoKep");
+    let random;
+    
+    // addig sorsol, amíg nem ugyanaz
+    do {
+      random = Math.floor(Math.random() * kepek.length);
+    } while (random == elozo);
+    
+    // új érték mentése
+    localStorage.setItem("elozoKep", random);
+    
+    // háttér beállítása gradienttel
+    document.getElementById("header").style.backgroundImage =
+      `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${kepek[random]}')`;
+    </script>
+</body>
+</html>

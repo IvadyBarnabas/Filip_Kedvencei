@@ -1,0 +1,148 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #222831;
+    color: #EEEEEE;
+}
+
+h1{
+    color: #FFD369;
+}
+
+main h1, main h2 {
+    text-align: center;
+    padding: 10px;
+}
+
+header{
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 2px solid #FFD369;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 30px;
+}
+
+.header-container h1 {
+    font-size: 3rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    text-transform: uppercase;
+}
+
+a{
+    text-decoration: none;
+}
+
+nav a {
+    color: #EEEEEE;
+    margin-left: 20px;
+    font-weight: bold;
+    transition: 0.3s all;
+    font-size: larger;
+}
+
+nav a:hover {
+    color: #222831;
+    background: #FFD369;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 2rem;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.movie-block {
+    background: #393E46;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+    position: relative;
+}
+
+.movie-block:hover {
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.movie-block img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.movie-block h3 {
+    text-align: center;
+    padding: 10px;
+    color: #FFD369;
+}
+
+/* overlay info */
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(transparent, #222831);
+    opacity: 0;
+    transition: 0.3s;
+    padding: 10px;
+}
+
+.movie-block:hover .movie-info {
+    opacity: 1;
+}
+
+.movie-info button {
+    background: #FFD369;
+    border: none;
+    padding: 5px 10px;
+    color: #222831;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* PLAYER OLDAL */
+.player-page {
+    padding: 2rem;
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+
+.player-page iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.player-page h2 {
+    margin-bottom: 10px;
+    color: #FFD369;
+}
+
+.player-page p {
+    margin-bottom: 5px;
+    color: #EEEEEE;
+}
+
+footer{
+    text-align: center;
+    padding: 20px;
+    background: #393E46;
+    color: #FFD369;
+    border-top: 2px solid #FFD369;
+}
