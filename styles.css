@@ -39,6 +39,14 @@ header{
 a{
     text-decoration: none;
 }
+#Discord:hover{
+    background: #7289DA;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #EEEEEE;
+    font-weight: bold;
+    transition: 0.3s all;
+}
 
 nav a {
     color: #EEEEEE;
@@ -57,7 +65,7 @@ nav a:hover {
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 2rem;
     margin: auto;
@@ -69,18 +77,23 @@ nav a:hover {
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
-    transition: 0.3s;
     position: relative;
+    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    
+    transition: transform 0.3s ease;
 }
 
 .movie-block:hover {
-    transform: scale(1.1);
-    z-index: 10;
+    transform: scale(1.05);
+    z-index: 2;
 }
 
 .movie-block img {
     width: 100%;
-    height: 300px;
+    aspect-ratio: 2/3;
     object-fit: cover;
 }
 
@@ -145,4 +158,71 @@ footer{
     background: #393E46;
     color: #FFD369;
     border-top: 2px solid #FFD369;
+}
+/* LAPOZÁS */
+.pagination {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.pagination button {
+    background: #FFD369;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    color: #222831;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.pagination button:hover {
+    background: #EEEEEE;
+}
+
+#pageNum {
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#searchInput {
+    width: 60%;
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: #393E46;
+    color: #EEEEEE;
+}
+
+#searchInput:focus {
+    box-shadow: 0 0 10px #FFD369;
+}
+
+@media screen and (max-width: 600px) {
+    .header-container h1 {
+        font-size: 2rem;
+    }
+
+    nav a {
+        font-size: medium;
+        margin-left: 10px;
+    }
+
+    .movie-block img {
+        height: 200px;
+    }
+
+    .player-page iframe {
+        height: 300px;
+    }
+    
 }

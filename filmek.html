@@ -40,47 +40,89 @@ const movies = {
         description: "Spawn visszatér az élők világába.",
         video: "//videa.hu/player?v=14FBfKlEebBrUCBY"
     },
-    powerrangers: {
-        title: "Power Rangers (2017)",
-        director: "Dean Israelite",
-        actors: "Dacre Montgomery",
-        description: "Fiatalok megmentik a világot.",
-        video: "//videa.hu/player?v=nldP9ljn5gHwYnlU"
+    pacificrim: {
+        title: "Pacific Rim",
+        director: "Guillermo del Toro",
+        actors: "Charlie Hunnam, Idris Elba",
+        description: "Óriás szörnyek támadják meg a Földet.",
+        video: "//videa.hu/player?v=HM3ixgkhrLHNVqeJ" 
     },
-    predator2018: {
-        title: "Predator: A Ragadozó",
+    predator:{
+        title: "Predator",
+        director: "John McTiernan",
+        actors: "Arnold Schwarzenegger, Carl Weathers",
+        description: "Egy elit katonai csapat egy rejtélyes lényre bukkan a dzsungelben.",
+        video: "//videa.hu/player?v=aIahCvyeumLZtVOn" 
+    },
+    predator2: {
+        title: "Predator 2",
+        director: "Stephen Hopkins",
+        actors: "Danny Glover, Gary Busey",
+        description: "A Predator ezúttal egy nagyvárosban vadászik.",
+        video: "//videa.hu/player?v=imvreXknbMD536Kr"
+    },
+     prey: {
+        title: "Prey",
+        director: "Dan Trachtenberg",
+        actors: "Amber Midthunder, Dakota Beavers",
+        description: "Egy fiatal harcos szembeszáll egy új Predatorral.",
+        video: "//videa.hu/player?v=COQyL2NK0enDYLQZ" 
+    },
+    predatorkok: {
+        title: "Predator: Killer Of Killers",
         director: "Shane Black",
         actors: "Boyd Holbrook",
         description: "A ragadozó visszatér.",
-        video: "//videa.hu/player?v=gkeSJjjSpUaBbEqO"
+        video: "//videa.hu/player?v=48pNB5TDOkSjNBwe"
     },
-    pacificrim2: {
-        title: "Pacific Rim 2: Lázadás",
-        director: "Steven S. DeKnight",
-        actors: "John Boyega",
-        description: "Új generáció harcol a Kaijuk ellen.",
-        video: "//videa.hu/player?v=AKkfubCnN3fzP9H8" 
+    spiderverse:{
+        title: "Spider-Man: Into the Spider-Verse",
+        director: "Bob Persichetti, Peter Ramsey, Rodney Rothman",
+        actors: "Shameik Moore, Jake Johnson, Hailee Steinfeld",
+        description: "Miles Morales felfedezi a Pókember multiverzumban.",
+        video: "//embed.indavideo.hu/player/video/452f75b155"
     },
-    avp2: {
-        title: "Alien vs. Predator 2: Requiem",
-        director: "Colin Strause, Greg Strause",
-        actors: "Steven Pasquale, Reiko Aylesworth",
-        description: "Az Alien és a Predator harca folytatódik.",
-        video: "//videa.hu/player?v=oUzBDo3lVKO69Cnn"
+    spiderverse2:{
+        title: "Spider-Man: Across the Spider-Verse",
+        director: "Joaquim Dos Santos, Kemp Powers, Justin K. Thompson",
+        actors: "Shameik Moore, Hailee Steinfeld, Oscar Isaac",
+        description: "Miles Morales új kalandjai a Pókember multiverzumban.",
+        video: "//videa.hu/player?v=Dh3u44oGWi5jOCoP" 
     },
-    micimackóvérésméz: {
-        title: "Micimackó: Vér és Méz",
-        director: "Marc Forster",
-        actors: "Kaitlyn Maher, Chris O'Dowd",
-        description: "Micimackó sötét oldalát mutatja be.",
-        video:"//videa.hu/player?v=quza7TIMAsp0UInM"
+    tasm: {
+        title: "The Amazing Spider-Man",
+        director: "Marc Webb",
+        actors: "Andrew Garfield, Emma Stone",
+        description: "Peter Parker felfedezi képességeit és harcol a gonosz ellen.",
+        video: "//videa.hu/player?v=9n7sXo5lVqL8m1aP"
     },
-    micimackóvérésméz2: {
-        title: "Micimackó: Vér és Méz 2",
-        director: "Marc Forster",
-        actors: "Kaitlyn Maher, Chris O'Dowd",
-        description: "Micimackó sötét oldalát mutatja be.",
-        video:"//videa.hu/player?v=nZAJAXyRaWfVLdro" 
+    tasm2: {
+        title: "The Amazing Spider-Man 2",
+        director: "Marc Webb",
+        actors: "Andrew Garfield, Emma Stone, Jamie Foxx",
+        description: "Peter Parker új kihívásokkal néz szembe, miközben megpróbálja megvédeni szeretteit.",
+        video: "//videa.hu/player?v=9n7sXo5lVqL8m1aP"
+    },
+    brandnewday: {
+        title: "Spider-Man: Brand New Day",
+        director: "Dan Slott",
+        actors: "Peter Parker, Mary Jane Watson",
+        description: "Peter Parker újra felfedezi életét és kapcsolatait.",
+        video: "//videa.hu/player?v=9n7sXo5lVqL8m1aP"
+    },
+    scarymovie:{
+        title: "Scary Movie",
+        director: "Keenen Ivory Wayans",
+        actors: "Anna Faris, Shawn Wayans",
+        description: "Egy paródia a horrorfilmek világáról.",
+        video: "//videa.hu/player?v=46JVTxOplzy6uspW"
+    },
+    scream:{
+        title: "Scream",
+        director: "Wes Craven",
+        actors: "Neve Campbell, Courteney Cox",
+        description: "Egy sorozatgyilkos terrorizál egy kisvárost.",
+        video: "//videa.hu/player?v=Gyh7g3iAA9VRIaUO"
     }
 };
 
@@ -105,7 +147,8 @@ function goToMovie(id){
       "kepek/header2.webp",
       "kepek/header3.webp",
       "kepek/header4.webp",
-      "kepek/header5.webp"
+      "kepek/header5.webp",
+      "kepek/header6.webp"
     ];
     
     // előző kép index lekérése
