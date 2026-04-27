@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Filip Kedvencei</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="kepek/icon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filip Kedvencei</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="kepek/icon.png">
 </head>
 
 <body>
@@ -21,7 +21,28 @@
             <a href="#infos">Elérhetőségünk</a>
         </nav>
     </div>
+
+    <!-- USER BOX -->
+    <div id="userBox" class="user-box"></div>
 </header>
+
+<!-- LOGIN MODAL -->
+<div id="authModal" class="modal">
+    <div class="modal-content">
+
+        <h2 id="formTitle">Bejelentkezés</h2>
+
+        <input type="text" id="username" placeholder="Felhasználónév">
+        <input type="password" id="password" placeholder="Jelszó">
+
+        <button onclick="login()">Belépés</button>
+        <button onclick="register()">Regisztráció</button>
+        <button onclick="guestLogin()">Folytatás vendégként</button>
+
+        <p onclick="toggleForm()" id="switchText">Nincs fiókod? Regisztrálj</p>
+
+    </div>
+</div>
 
 <h2 style="text-align:center;">Válassz filmet 👇</h2>
 
@@ -243,6 +264,81 @@ function prevPage(){
 }
 
 renderMovies();
+// USER
+function renderUser(){
+    const user = localStorage.getItem("loggedUser");
+    const box = document.getElementById("userBox");
+
+    if(!user){ box.innerHTML=""; return; }
+
+    let name = user === "guest" ? "Vendég" : user;
+
+    box.innerHTML = `
+        <span>👤 ${name}</span>
+        <button onclick="logout()">Kilépés</button>
+    `;
+}
+
+function logout(){
+    localStorage.removeItem("loggedUser");
+    location.reload();
+}
+
+// LOGIN SYSTEM
+window.onload = function(){
+    const user = localStorage.getItem("loggedUser");
+    if(user){
+        document.getElementById("authModal").style.display="none";
+    }
+    renderUser();
+    renderMovies();
+}
+
+function login(){
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let found = users.find(u => u.username === username && u.password === password);
+
+    if(found){
+        localStorage.setItem("loggedUser", username);
+        document.getElementById("authModal").style.display="none";
+        renderUser();
+    } else {
+        alert("Hibás adatok!");
+    }
+}
+
+function register(){
+    let username = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if(users.find(u => u.username === username)){
+        alert("Ez a név már foglalt!");
+        return;
+    }
+
+    users.push({username,password});
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Sikeres regisztráció!");
+}
+
+function guestLogin(){
+    localStorage.setItem("loggedUser","guest");
+    document.getElementById("authModal").style.display="none";
+    renderUser();
+}
+
+let isLogin = true;
+function toggleForm(){
+    isLogin = !isLogin;
+    document.getElementById("formTitle").innerText = isLogin ? "Bejelentkezés" : "Regisztráció";
+    document.getElementById("switchText").innerText = isLogin ? "Nincs fiókod? Regisztrálj" : "Van fiókod? Jelentkezz be";
+}
 
 // HEADER RANDOM
 const kepek = [
