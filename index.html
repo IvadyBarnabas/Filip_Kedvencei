@@ -16,7 +16,7 @@
         <nav>
             <a href="index.html">Főoldal</a>
             <a href="index.html">Filmek</a>
-            <a href="" id="Discord">Discord</a> 
+            <a href="#" id="Discord">Discord</a> 
             <a href="#about">Rólunk</a>
             <a href="#infos">Elérhetőségünk</a>
         </nav>
@@ -25,9 +25,18 @@
 
 <h2 style="text-align:center;">Válassz filmet 👇</h2>
 
-<!-- 🔍 KERESŐ -->
 <div class="search-container">
     <input type="text" id="searchInput" placeholder="Keresés filmre...">
+</div>
+
+<!-- 🎯 KATEGÓRIA SZŰRÉS -->
+<div class="filters">
+    <button onclick="setCategory('all')">Összes</button>
+    <button onclick="setCategory('Akció')">Akció</button>
+    <button onclick="setCategory('Horror')">Horror</button>
+    <button onclick="setCategory('Vígjáték')">Vígjáték</button>
+    <button onclick="setCategory('Sci-fi')">Sci-fi</button>
+    <button onclick="toggleFavorites()">❤️ Kedvencek</button>
 </div>
 
 <div class="movie-grid" id="movie"></div>
@@ -39,13 +48,14 @@
 </div>
 
 <script>
-// FILM LISTA
+
 const movies = [
     {id:"pacificrim", title:"Pacific Rim", img:"kepek/pacificrim.webp", info:"Sci-fi/Akció • 2013"},
     {id:"pacificrim2", title:"Pacific Rim: Uprising", img:"kepek/pacificrim2.webp", info:"Sci-fi/Akció • 2018"},
     {id:"spawn", title:"Spawn", img:"kepek/spawn.webp", info:"Horror/Akció • 1997"},
     {id:"predator", title:"Predator", img:"kepek/predator.webp", info:"Sci-fi/Horror • 1987"},
     {id:"predator2", title:"Predator 2", img:"kepek/predator2.webp", info:"Sci-fi/Horror • 1990"},
+    {id:"predators", title:"Predators", img:"kepek/predators.webp", info:"Sci-fi/Horror • 2010"},
     {id:"prey", title:"Prey", img:"kepek/prey.webp", info:"Sci-fi/Horror • 2022"},
     {id:"predatorkok", title:"Predator: Killer Of Killers", img:"kepek/predatorkok.webp", info:"Sci-fi/Horror • 2025"},
     {id:"predatorbadlands", title:"Predator: Badlands", img:"kepek/predatorbadlands.webp", info:"Sci-fi/Horror • 2025"},
@@ -70,10 +80,13 @@ const movies = [
     {id:"readyornot", title:"Ready Or Not", img:"kepek/readyornot.webp", info:"Horror/Vígjáték • 2019"},
     {id:"scream", title:"Scream", img:"kepek/scream.webp", info:"Horror • 1996"},
     {id:"scarymovie", title:"Scary Movie", img:"kepek/scarymovie.webp", info:"Horror/Vígjáték • 2000"},
+    {id:"fnaf", title:"Five Nights at Freddy's", img:"kepek/fnaf.webp", info:"Horror • 2023"},
+    {id:"fnaf2", title:"Five Nights at Freddy's 2", img:"kepek/fnaf2.webp", info:"Horror • 2025"},
     {id:"shawshankredemenption", title:"Shawshank Redemption", img:"kepek/shawshankredemenption.webp", info:"Krimi/Filmdráma • 1994"},
     {id:"tf1", title:"Transformers", img:"kepek/tf1.webp", info:"Akció/Sci-fi • 2007"},
     {id:"tfone", title:"Transformers: One", img:"kepek/tfone.webp", info:"Akció/Sci-fi • 2024"},
     {id:"terminator2", title:"Terminator 2", img:"kepek/terminator2.webp", info:"Sci-fi/Akció • 1991"},
+    {id:"django", title:"Django Unchained", img:"kepek/django.webp", info:"Akció/Western • 2012"},
     {id:"bullettrain", title:"Bullet Train", img:"kepek/bullettrain.webp", info:"Akció/Vígjáték • 2022"},
     {id:"freeguy", title:"Free Guy", img:"kepek/freeguy.webp", info:"Akció/Vígjáték • 2021"},
     {id:"whyhim", title:"Why Him?", img:"kepek/whyhim.webp", info:"Romantikus/Vígjáték • 2016"},
@@ -82,6 +95,7 @@ const movies = [
     {id:"hailmary", title:"Project Hail Mary", img:"kepek/hailmari.webp", info:"Sci-fi/Kaland • 2026"},
     {id:"realsteel", title:"Real Steel", img:"kepek/realsteel.webp", info:"Sci-fi/Akció • 2011"},
     {id:"ninjago", title:"Lego Ninjago", img:"kepek/ninjago.webp", info:"Gyerek/Vígjáték • 2017"},
+    {id:"httyd", title:"How to Train Your Dragon", img:"kepek/httyd.webp", info:"Gyerek/Kaland • 2010"},
     {id:"the_nightmare_before_xmas", title:"The Nightmare Before Christmas", img:"kepek/the_nightmare_before_xmas.webp", info:"Gyerek/Fantasy • 1993"},
     {id:"pikachumovie", title:"Pikachu The Detective", img:"kepek/pikachumovie.webp", info:"Gyerek/Fantasy • 2019"},
 ];
@@ -89,34 +103,106 @@ const movies = [
 let currentPage = 1;
 const perPage = 20;
 let searchTerm = "";
+let currentCategory = "all";
+let showFavorites = false;
 
-// KERESŐ
+// ❤️ FAVORITE
+function getFavorites(){
+    return JSON.parse(localStorage.getItem("favs")) || [];
+}
+
+function toggleFavorite(id){
+    let favs = getFavorites();
+    if(favs.includes(id)){
+        favs = favs.filter(f => f !== id);
+    } else {
+        favs.push(id);
+    }
+    localStorage.setItem("favs", JSON.stringify(favs));
+    renderMovies();
+}
+
+// ⭐ RATING
+function setRating(id, rating){
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+    
+    // ha ugyanarra kattint → törlés
+    if(ratings[id] === rating){
+        delete ratings[id];
+    } else {
+        ratings[id] = rating;
+    }
+
+    localStorage.setItem("ratings", JSON.stringify(ratings));
+    renderMovies();
+}
+
+function getRating(id){
+    let ratings = JSON.parse(localStorage.getItem("ratings")) || {};
+    return ratings[id] || 0;
+}
+
+// 🎯 CATEGORY
+function setCategory(cat){
+    currentCategory = cat;
+    showFavorites = false;
+    currentPage = 1;
+    renderMovies();
+}
+
+// ❤️ FAVORITE FILTER
+function toggleFavorites(){
+    showFavorites = !showFavorites;
+    currentPage = 1;
+    renderMovies();
+}
+
+// SEARCH
 document.getElementById("searchInput").addEventListener("input", function(e){
     searchTerm = e.target.value.toLowerCase();
     currentPage = 1;
     renderMovies();
 });
 
-// FILMEK MEGJELENÍTÉSE
 function renderMovies(){
     const grid = document.getElementById("movie");
     grid.innerHTML = "";
 
-    const filteredMovies = movies.filter(movie =>
+    const favs = getFavorites();
+
+    let filtered = movies.filter(movie =>
         movie.title.toLowerCase().includes(searchTerm)
     );
 
-    const start = (currentPage - 1) * perPage;
-    const end = start + perPage;
+    if(currentCategory !== "all"){
+        filtered = filtered.filter(movie => movie.info.includes(currentCategory));
+    }
 
-    const pageMovies = filteredMovies.slice(start, end);
+    if(showFavorites){
+        filtered = filtered.filter(movie => favs.includes(movie.id));
+    }
+
+    const start = (currentPage - 1) * perPage;
+    const pageMovies = filtered.slice(start, start + perPage);
 
     pageMovies.forEach(movie => {
+
+        let rating = getRating(movie.id);
+        let stars = "";
+
+        for(let i=1;i<=5;i++){
+            stars += `<span class="star ${i<=rating?"active":""}" onclick="event.stopPropagation();setRating('${movie.id}',${i})">★</span>`;
+        }
+
         grid.innerHTML += `
         <div class="movie-block" onclick="goToMovie('${movie.id}')">
+            <div class="favorite" onclick="event.stopPropagation();toggleFavorite('${movie.id}')">
+                ${favs.includes(movie.id) ? "❤️" : "🤍"}
+            </div>
             <img src="${movie.img}">
             <div class="movie-info">
                 <p>${movie.info}</p>
+                <div class="stars">${stars}</div>
                 <button>▶ Lejátszás</button>
             </div>
             <h3>${movie.title}</h3>
@@ -127,21 +213,13 @@ function renderMovies(){
     document.getElementById("pageNum").innerText = currentPage;
 }
 
-// NAVIGÁCIÓ
 function goToMovie(id){
     window.location.href = "filmek.html?film=" + id;
 }
 
-// LAPOZÁS
 function nextPage(){
-    const filteredMovies = movies.filter(movie =>
-        movie.title.toLowerCase().includes(searchTerm)
-    );
-
-    if(currentPage * perPage < filteredMovies.length){
-        currentPage++;
-        renderMovies();
-    }
+    currentPage++;
+    renderMovies();
 }
 
 function prevPage(){
@@ -153,7 +231,7 @@ function prevPage(){
 
 renderMovies();
 
-// HEADER RANDOM KÉP
+// HEADER RANDOM
 const kepek = [
     "kepek/header1.webp",
     "kepek/header2.webp",
@@ -163,18 +241,14 @@ const kepek = [
     "kepek/header6.webp"
 ];
 
-let elozo = localStorage.getItem("elozoKep");
-let random;
-
-do {
-    random = Math.floor(Math.random() * kepek.length);
-} while (random == elozo);
-
-localStorage.setItem("elozoKep", random);
+let random = Math.floor(Math.random() * kepek.length);
 
 document.getElementById("header").style.backgroundImage =
 `linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${kepek[random]}')`;
-</script>
 
+</script>
+<footer>
+    <p>&copy; 2024 Ivády Barnabás (Szf_9e) - Minden jog fenntartva.</p>
+</footer>
 </body>
 </html>

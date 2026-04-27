@@ -35,7 +35,13 @@ header{
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
     text-transform: uppercase;
 }
-
+footer{
+    text-align: center;
+    padding: 20px;
+    background: #393E46;
+    color: #FFD369;
+    border-top: 2px solid #FFD369;
+}
 a{
     text-decoration: none;
 }
@@ -112,6 +118,7 @@ nav a:hover {
     opacity: 0;
     transition: 0.3s;
     padding: 10px;
+    text-shadow: black 0px 0px 5px;
 }
 
 .movie-block:hover .movie-info {
@@ -225,4 +232,40 @@ footer{
         height: 300px;
     }
     
+}
+.favorite {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.stars {
+    margin-top: 5px;
+}
+
+.star {
+    color: gray;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.star.active {
+    color: gold;
+}
+
+.filters {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    margin: 5px;
+    padding: 8px 12px;
+    border: none;
+    background: #FFD369;
+    color: #222831;
+    border-radius: 5px;
+    cursor: pointer;
 }
