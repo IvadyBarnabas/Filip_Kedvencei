@@ -36,6 +36,7 @@
     <button onclick="setCategory('Horror')">Horror</button>
     <button onclick="setCategory('Vígjáték')">Vígjáték</button>
     <button onclick="setCategory('Sci-fi')">Sci-fi</button>
+    <button onclick="setCategory('retro')">80/90-es évek</button>
     <button onclick="toggleFavorites()">❤️ Kedvencek</button>
 </div>
 
@@ -77,17 +78,22 @@ const movies = [
     {id:"darkknight", title:"The Dark Knight", img:"kepek/darkknight.webp", info:"Akció/Krimi • 2008"},
     {id:"thebatman", title:"The Batman", img:"kepek/thebatman.webp", info:"Akció/Krimi • 2022"},
     {id:"legobatman", title:"Lego Batman", img:"kepek/legobatman.webp", info:"Gyerek/Vígjáték • 2017"},
+    {id:"sonic3", title:"Sonic the Hedgehog 3", img:"kepek/sonic3.webp", info:"Kaland/Vígjáték • 2024"},
     {id:"readyornot", title:"Ready Or Not", img:"kepek/readyornot.webp", info:"Horror/Vígjáték • 2019"},
     {id:"scream", title:"Scream", img:"kepek/scream.webp", info:"Horror • 1996"},
     {id:"scarymovie", title:"Scary Movie", img:"kepek/scarymovie.webp", info:"Horror/Vígjáték • 2000"},
     {id:"fnaf", title:"Five Nights at Freddy's", img:"kepek/fnaf.webp", info:"Horror • 2023"},
     {id:"fnaf2", title:"Five Nights at Freddy's 2", img:"kepek/fnaf2.webp", info:"Horror • 2025"},
     {id:"quietplacedayone", title:"Quiet Place: Day One", img:"kepek/quietplacedayone.webp", info:"Horror/Sci-fi • 2024"},
+    {id:"forestgump", title:"Forrest Gump", img:"kepek/forestgump.webp", info:"Vígjáték/Romantikus • 1992"},
     {id:"shawshankredemenption", title:"Shawshank Redemption", img:"kepek/shawshankredemenption.webp", info:"Krimi/Dráma • 1994"},
+    {id:"mha2heroes", title:"My Hero Academia: Two Heroes", img:"kepek/mha2heroes.webp", info:"Akció/Kaland • 2018"},
+    {id:"mhayourenext", title:"My Hero Academia: You're Next", img:"kepek/mhayourenext.webp", info:"Akció/Kaland • 2024"},
     {id:"tf1", title:"Transformers", img:"kepek/tf1.webp", info:"Akció/Sci-fi • 2007"},
     {id:"tfone", title:"Transformers: One", img:"kepek/tfone.webp", info:"Akció/Sci-fi • 2024"},
     {id:"terminator2", title:"Terminator 2", img:"kepek/terminator2.webp", info:"Sci-fi/Akció • 1991"},
     {id:"django", title:"Django Unchained", img:"kepek/django.webp", info:"Akció/Western • 2012"},
+    {id:"pelé", title:"Pelé: Birth of a Legend", img:"kepek/pelé.webp", info:"Sport/Dráma • 2016"},
     {id:"bullettrain", title:"Bullet Train", img:"kepek/bullettrain.webp", info:"Akció/Vígjáték • 2022"},
     {id:"freeguy", title:"Free Guy", img:"kepek/freeguy.webp", info:"Akció/Vígjáték • 2021"},
     {id:"whyhim", title:"Why Him?", img:"kepek/whyhim.webp", info:"Romantikus/Vígjáték • 2016"},
@@ -175,7 +181,13 @@ function renderMovies(){
         movie.title.toLowerCase().includes(searchTerm)
     );
 
-    if(currentCategory !== "all"){
+    if(currentCategory === "retro"){
+    filtered = filtered.filter(movie => {
+        const year = parseInt(movie.info.split("•")[1]);
+        return year >= 1980 && year <= 1999;
+    });
+    }
+    else if(currentCategory !== "all"){
         filtered = filtered.filter(movie => movie.info.includes(currentCategory));
     }
 
